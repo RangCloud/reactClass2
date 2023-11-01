@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Switch, HashRouter, Route, Routes, Link, NavLink} from 'react-router-dom';
 
 function Home(){
   return(
@@ -35,18 +35,25 @@ function App(){
   return(
     <div>
       <h1>Hello React Dom</h1>
-      <ul>
+      {/* <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/topics">Topics</a></li>
         <li><a href="/contact">Contact</a></li>
+      </ul> */}
+      <ul>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/topics">Topics</NavLink></li>
+        <li><NavLink to="/contact">Contact</NavLink></li>
       </ul>
 
-      <Routes>
+
+      {/* Swithch: react-router-dom v5까지 routes와 유사하게 쓰여짐 */}
+      <Switch>
         <Route path='/' element={<Home/>} />
-        <Route path='/Topics' element={<Topics/>} />
+        <Route path='/Topics/*' element={<Topics/>} />
         <Route path='/Contact' element={<Contact/>} />
         <Route path='/*' element={"Not Found"} />
-      </Routes>
+      </Switch>
     </div>
   )
 }
